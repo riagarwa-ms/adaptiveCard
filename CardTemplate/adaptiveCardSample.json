@@ -1,0 +1,121 @@
+{
+  "type": "AdaptiveCard",
+  "msTeams": {
+    "width": "full"
+  },
+  "body": [
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "256px",
+              "items": [
+                {
+                  "type": "Image",
+                  "url": "https://i.ibb.co/JR6LyZ0/content-1.jpg",
+                  "width": "256px",
+                  "height": "150px"
+                }
+              ],
+              "padding": "None"
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Container",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Leadership Connection",
+                      "weight": "Bolder",
+                      "fontType": "Default",
+                      "size": "small",
+                      "spacing": "None"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "Singapore Building Update. An Adaptive Card, containing a free-form body of card Fingerprinting check is required for special work environments. For the process to initiate, you would require your manager's approval",
+                      "fontType": "Default",
+                      "size": "Large",
+                      "spacing": "small",
+                      "maxLines": 1,
+                      "wrap": true
+                    },
+                    {
+                      "type": "ColumnSet",
+                      "columns": [
+                        {
+                          "type": "Column",
+                          "width": "stretch",
+                          "items": [
+                            {
+                              "type": "TextBlock",
+                              "text": " ",
+                              "fontType": "Default",
+                              "isSubtle": true,
+                              "size": "Small",
+                              "spacing": "small"
+                            },
+                            {
+                              "type": "TextBlock",
+                              "text": " ",
+                              "fontType": "Default",
+                              "isSubtle": true,
+                              "size": "Small",
+                              "spacing": "medium"
+                            },
+                            {
+                              "type": "TextBlock",
+                              "text": " ",
+                              "fontType": "Default",
+                              "isSubtle": true,
+                              "size": "Small",
+                              "spacing": "extraLarge"
+                            },
+                            {
+                              "type": "TextBlock",
+                              "text": "Patti Fernandez",
+                              "fontType": "Default",
+                              "isSubtle": true,
+                              "size": "Small",
+                              "spacing": "large"
+                            },
+                            {
+                              "type": "TextBlock",
+                              "text": "Aug 25, 2020",
+                              "fontType": "Default",
+                              "isSubtle": true,
+                              "size": "Small",
+                              "spacing": "None"
+                            }
+                          ],
+                          "padding": "None"
+                        }
+                      ],
+                      "padding": "None"
+                    }
+                  ],
+                  "padding": "None"
+                }
+              ],
+              "spacing": "medium"
+            }
+          ]
+
+        }
+      ]
+    }
+  ],
+  "selectAction": {
+    "type": "Action.OpenUrl",
+    "url": "https://www.youtube.com/watch?v=YPlIhgAX9AQ"
+  },
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2"
+}

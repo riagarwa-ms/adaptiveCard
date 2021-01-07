@@ -1,0 +1,16 @@
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Release\netcoreapp2.1\appsettings.json
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Release\netcoreapp2.1\HelloWorldBot.deps.json
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Release\netcoreapp2.1\HelloWorldBot.runtimeconfig.json
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Release\netcoreapp2.1\HelloWorldBot.runtimeconfig.dev.json
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Release\netcoreapp2.1\HelloWorldBot.dll
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Release\netcoreapp2.1\HelloWorldBot.pdb
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.csprojAssemblyReference.cache
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.RazorAssemblyInfo.cache
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.RazorAssemblyInfo.cs
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.AssemblyInfoInputs.cache
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.AssemblyInfo.cs
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.RazorTargetAssemblyInfo.cache
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.dll
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.pdb
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\HelloWorldBot.csproj.CoreCompileInputs.cache
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Release\netcoreapp2.1\UserSecretsAssemblyInfo.cs

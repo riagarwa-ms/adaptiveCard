@@ -1,0 +1,102 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.5",
+  "version": "1.0.0",
+  "id": "41d75a99-a2d2-4944-94e2-8ba2a95a26a0",
+  "packageName": "com.microsoft.teams.sample",
+  "developer": {
+    "name": "Microsoft",
+    "websiteUrl": "https://dev.botframework.com",
+    "privacyUrl": "https://dev.botframework.com",
+    "termsOfUseUrl": "https://dev.botframework.com"
+  },
+  "icons": {
+    "color": "download.jfif",
+    "outline": "icon-outline.png"
+  },
+  "name": {
+    "short": "SharePoint",
+    "full": "Config Auth Search"
+  },
+  "description": {
+    "short": "Config Auth Search",
+    "full": "Config Auth Search"
+  },
+  "accentColor": "#FFFFFF",
+  "composeExtensions": [
+    {
+      "botId": "41d75a99-a2d2-4944-94e2-8ba2a95a26a0",
+      "canUpdateConfiguration": true,
+      "commands": [
+        {
+          "id": "searchQuery",
+          "type": "query",
+          "title": "Search",
+          "description": "Perform a search",
+          "initialRun": false,
+          "fetchTask": false,
+          "context": [
+            "commandBox",
+            "compose",
+            "message"
+          ],
+          "parameters": [
+            {
+              "name": "searchQuery",
+              "title": "Search",
+              "description": "Your search query",
+              "inputType": "text"
+            }
+          ]
+        },
+        {
+          "id": "SignOutCommand",
+          "type": "action",
+          "title": "Sign Out",
+          "description": "Sign out from authenticated services.",
+          "initialRun": false,
+          "fetchTask": true,
+          "context": [
+            "commandBox",
+            "compose"
+          ],
+          "parameters": [
+            {
+              "name": "param",
+              "title": "param",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "messageHandlers": [
+        {
+          "type": "link",
+          "value": {
+            "domains": [
+              "*.botframework.com",
+              "*.sharepoint.com",
+              "*.sharepoint-df.com",
+              "*.facebook.com"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "webApplicationInfo": {
+    "id": "e5e15768-1702-474d-ba7b-904c7cad2bcf",
+    "resource": "api://botid-41d75a99-a2d2-4944-94e2-8ba2a95a26a0"
+  },
+  "permissions": [
+    "identity"
+  ],
+  "validDomains": [
+    "*.githubusercontent.com",
+    "*.sharepoint.com",
+    "*.sharepoint-df.com",
+    "*.ngrok.io",
+    "*.facebook.com",
+    "*.botframework.com"
+  ]
+}
