@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 //
 // Generated with Bot Builder V4 SDK Template for Visual Studio EchoBot v4.6.2
@@ -22,7 +22,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using AdaptiveCards;
 using System.IO;
-//using System.Security.Cryptography.HashAlgorithm;
+using AdaptiveCards.Templating;
+using System.Text.RegularExpressions;
 
 namespace HelloWorldBot.Bots
 {
@@ -30,13 +31,14 @@ namespace HelloWorldBot.Bots
     {
         private const string microsoftTenantID = "f8cdef31-a31e-4b4a-93e4-5f571e91255a";
         private const string tokenRequestUrl = "https://login.microsoftonline.com/f8cdef31-a31e-4b4a-93e4-5f571e91255a/oauth2/v2.0/token";
+        private const string aud = "https://login.microsoftonline.com/f8cdef31-a31e-4b4a-93e4-5f571e91255a/v2.0";
         private const string clientId = "e5e15768-1702-474d-ba7b-904c7cad2bcf";
-        private const string clientAssertion = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+        private const string clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
         private const string clientCredentials = "client_credentials";
 
         protected override async Task<MessagingExtensionResponse> OnTeamsAppBasedLinkQueryAsync(ITurnContext<IInvokeActivity> turnContext, AppBasedLinkQuery query, CancellationToken cancellationToken)
         {
-            if(turnContext != null && turnContext.Activity != null)
+            if (turnContext != null && turnContext.Activity != null)
             {
                 JObject valueObject = JObject.FromObject(turnContext.Activity.Value);
                 
@@ -45,38 +47,10 @@ namespace HelloWorldBot.Bots
                     JObject authObj = JObject.FromObject(valueObject["authentication"]);
                     
                     string accessToken = GetPostTransformedPFTToken((authObj["token"]).ToString());
-                    string actorToken = await getActorToken(query.url);
+                    string actorToken = await getActorToken("https://microsoft.sharepoint-df.com/");
+                    string[] spMetadata = await GetSharePointMetadata(accessToken, actorToken, "");
 
-                    //string spMetadata = await getSharePointMetadata(accessToken, actorToken, "");
-
-                   var previewCard = new HeroCard
-                    {
-                        Title = "Test Title",
-                        Subtitle = "Test Subtitle",
-                        Text = "Sample text",
-                    };
-
-                    try
-                    {
-                        var client = new HttpClient();
-                        var cardTemplate = File.ReadAllText(@".\CardTemplate\adaptiveCardSample.json");
-                        var parsedResult = AdaptiveCard.FromJson(cardTemplate);
-
-                        MessagingExtensionAttachment attachment = new MessagingExtensionAttachment
-                        {
-                            ContentType = AdaptiveCard.ContentType,
-                            Content = parsedResult.Card,
-                            Preview = previewCard.ToAttachment()
-                        };
-
-                        var result = new MessagingExtensionResult("list", "result", new[] { attachment });
-                        return new MessagingExtensionResponse(result);
-                    }
-                    catch (AdaptiveSerializationException e)
-                    {
-                        throw e;
-                    }
-
+                    return CreateAdaptiveCard(spMetadata);
                 }
                 else
                 {
@@ -127,7 +101,7 @@ namespace HelloWorldBot.Bots
 
         private async Task<string> getActorToken(string spUrl)
         {
-            string scope = (new Uri(spUrl)).Host + "/.default";
+            string scope = "https://" + (new Uri(spUrl)).Host + "/.default";
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(tokenRequestUrl);
 
@@ -139,7 +113,7 @@ namespace HelloWorldBot.Bots
                 { "client_id", clientId },
                 {"client_assertion", clientAssertion },
                 {"scope", scope },
-                {"client_assertion_type", clientAssertion }
+                {"client_assertion_type", clientAssertionType }
             };
 
             client.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -158,10 +132,6 @@ namespace HelloWorldBot.Bots
         private string GetSignedClientAssertion()
         {
             X509Certificate2 selfSignedCertificate = new X509Certificate2(@"C:\Users\riagarwa\Downloads\oct5keyvault-ProdCert2-20201211.pfx", "", X509KeyStorageFlags.EphemeralKeySet);
-
-            // AAD Prod Tenant ID: f8cdef31-a31e-4b4a-93e4-5f571e91255a
-            string aud = $"https://login.microsoftonline.com/f8cdef31-a31e-4b4a-93e4-5f571e91255a/v2.0";
-            // no need to add exp, nbf as JsonWebTokenHandler will add them by default.
             var claims = new Dictionary<string, object>()
             {
                 { "aud", aud },
@@ -181,17 +151,88 @@ namespace HelloWorldBot.Bots
             return signedClientAssertion;
         }
 
-        private async Task<string> getSharePointMetadata(string accessToken, string actorToken, string url)
+        private async Task<string[]> GetSharePointMetadata(string accessToken, string actorToken, string url)
+        {
+            Uri spUrl = new Uri(url);
+            var teamSite = Regex.Split(url, @"/\/ sitepages\//i")[0];
+
+            var apiUrl1 = teamSite + "/ _api / sitepages / pages / GetByUrl('" + spUrl.AbsolutePath + "')";
+            var apiUrl2 = teamSite + "/ _api / web / Title";
+            var apiUrl3 = "https://" + spUrl.Host + "/_api/v2.0/sharePoint:/" + teamSite + ":/driveItem/thumbnails/0/c71x40/content";
+            var taskList = new[]
+            {
+                EchoBot.MakePFTRequest(accessToken, actorToken, apiUrl1),
+                EchoBot.MakePFTRequest(accessToken, actorToken, apiUrl2),
+                EchoBot.MakePFTRequest(accessToken, actorToken, apiUrl3)
+            };
+
+            return await Task.WhenAll(taskList);
+        }
+
+        private static async Task<string> MakePFTRequest(string accessToken, string actorToken, string apiUrl)
         {
             HttpClient client = new HttpClient();
-            string authorizationRequestHeaderValue = "MSAuth1.0 actortoken=Bearer " + actorToken + ", accesstoken=Bearer " + accessToken + ", type=PFAT";
+            string authorizationHeaderValue = "MSAuth1.0 actortoken=" + '"' + 
+                "Bearer " + actorToken + '"' + ", accesstoken=" + '"' + "Bearer " + accessToken + '"' + ", type=" + '"' + "PFAT" + '"';
 
-            client.DefaultRequestHeaders.Add("Authorization", authorizationRequestHeaderValue);
-            HttpResponseMessage response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            var resp = await response.Content.ReadAsStringAsync();
+            client.DefaultRequestHeaders.Add("Authorization", authorizationHeaderValue);
+            HttpResponseMessage response = await client.GetAsync(apiUrl);
+            if(response.IsSuccessStatusCode)
+            {
+                var resp = await response.Content.ReadAsStringAsync();
+                return resp;
+            }
 
-            return resp;
+            return null;
+        }
+
+        private static MessagingExtensionResponse CreateAdaptiveCard(string[] spMetadata)
+        {
+            try
+            {
+                string cardTemplate = Path.Combine(".", "Resources", "adaptiveCardSample.json");
+                string cardContent = (File.ReadAllText(cardTemplate));
+                AdaptiveCardTemplate template = new AdaptiveCardTemplate(cardContent);
+
+                var spData = new
+                {
+                    imageUrl = "https://i.ibb.co/JR6LyZ0/content-1.jpg",
+                    siteName = "Leadership Connection",
+                    pageTitle = "Singapore Building Update",
+                    authorName = "Patti Fernandez",
+                    authorDate = "Aug 25, 2020"
+                };
+
+                string cardJson = template.Expand(spData);
+
+                HeroCard previewCard = new HeroCard
+                {
+                    Title = "Test Title",
+                    Subtitle = "Test Subtitle",
+                    Text = "Sample text",
+                };
+
+                var cardAttachment = CreateAdaptiveCardAttachment(cardJson, previewCard);
+
+                var result = new MessagingExtensionResult("list", "result", new[] { cardAttachment });
+                return new MessagingExtensionResponse(result);
+            }
+            catch (AdaptiveSerializationException e)
+            {
+                throw e;
+            }
+        }
+
+        private static MessagingExtensionAttachment CreateAdaptiveCardAttachment(string cardJson, HeroCard previewCard)
+        {
+            var adaptiveCardAttachment = new MessagingExtensionAttachment()
+            {
+                ContentType = "application/vnd.microsoft.card.adaptive",
+                Content = JsonConvert.DeserializeObject(cardJson),
+                Preview = previewCard.ToAttachment()
+            };
+
+            return adaptiveCardAttachment;
         }
     }
 }

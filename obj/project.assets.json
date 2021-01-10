@@ -16,6 +16,46 @@
           "lib/netstandard2.0/AdaptiveCards.dll": {}
         }
       },
+      "AdaptiveCards.Templating/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "AdaptiveExpressions": "4.9.3",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/AdaptiveCards.Templating.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AdaptiveCards.Templating.dll": {}
+        }
+      },
+      "AdaptiveExpressions/4.9.3": {
+        "type": "package",
+        "dependencies": {
+          "Antlr4.Runtime": "4.6.6",
+          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.Recognizers.Text.DataTypes.TimexExpression": "1.2.9",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/AdaptiveExpressions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AdaptiveExpressions.dll": {}
+        }
+      },
+      "Antlr4.Runtime/4.6.6": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.1/Antlr4.Runtime.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Antlr4.Runtime.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -2698,6 +2738,15 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.Recognizers.Text.DataTypes.TimexExpression/1.2.9": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll": {}
+        }
+      },
       "Microsoft.Rest.ClientRuntime/2.3.21": {
         "type": "package",
         "dependencies": {
@@ -4559,6 +4608,59 @@
         "lib/netstandard1.3/AdaptiveCards.xml",
         "lib/netstandard2.0/AdaptiveCards.dll",
         "lib/netstandard2.0/AdaptiveCards.xml"
+      ]
+    },
+    "AdaptiveCards.Templating/1.1.0": {
+      "sha512": "7aIFjQ1tVwLwVhgrVSCDLPf+ZMSZ84URKqIVtqy/5ZE7ucKMsqlFYWDbv0CgSixpePsYcz80dO5JLm50XJeXvA==",
+      "type": "package",
+      "path": "adaptivecards.templating/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "adaptivecards.templating.1.1.0.nupkg.sha512",
+        "adaptivecards.templating.nuspec",
+        "lib/netstandard2.0/AdaptiveCards.Templating.dll"
+      ]
+    },
+    "AdaptiveExpressions/4.9.3": {
+      "sha512": "4Pz0is4Pn9YViYAr3wbQ98Kc/9K/7NAVSyjCiPOjllpkamZOXYG6IhH+eo/eCEZai79xdKHsxqp3li7CYMVBfg==",
+      "type": "package",
+      "path": "adaptiveexpressions/4.9.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "adaptiveexpressions.4.9.3.nupkg.sha512",
+        "adaptiveexpressions.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/AdaptiveExpressions.dll",
+        "lib/netstandard2.0/AdaptiveExpressions.xml"
+      ]
+    },
+    "Antlr4.Runtime/4.6.6": {
+      "sha512": "NlbRjkTCidRh1QeWvGfFPKq0sqpPZrAwGaSTV0X2jL8buZxTf9/aQ7PehFAmc7erXLUQ3YMZEVZU86aQwma2+w==",
+      "type": "package",
+      "path": "antlr4.runtime/4.6.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "antlr4.runtime.4.6.6.nupkg.sha512",
+        "antlr4.runtime.nuspec",
+        "lib/net20/Antlr4.Runtime.dll",
+        "lib/net20/Antlr4.Runtime.xml",
+        "lib/net30/Antlr4.Runtime.dll",
+        "lib/net30/Antlr4.Runtime.xml",
+        "lib/net35-cf/Antlr4.Runtime.dll",
+        "lib/net35-cf/Antlr4.Runtime.xml",
+        "lib/net35-client/Antlr4.Runtime.dll",
+        "lib/net35-client/Antlr4.Runtime.xml",
+        "lib/net40-client/Antlr4.Runtime.dll",
+        "lib/net40-client/Antlr4.Runtime.xml",
+        "lib/net45/Antlr4.Runtime.dll",
+        "lib/net45/Antlr4.Runtime.xml",
+        "lib/netstandard1.1/Antlr4.Runtime.dll",
+        "lib/netstandard1.1/Antlr4.Runtime.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr4.Runtime.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Antlr4.Runtime.xml"
       ]
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -7270,6 +7372,22 @@
         "runtime.json",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Microsoft.Recognizers.Text.DataTypes.TimexExpression/1.2.9": {
+      "sha512": "ih1B1GF3YqtqCb161A7VtVfsKbIDnC3SZXYcMyGqY6WQNw0T8UwAZAnBUXw05U4LdI7NAwYSOxFcvvno3t1qmA==",
+      "type": "package",
+      "path": "microsoft.recognizers.text.datatypes.timexexpression/1.2.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/icon.png",
+        "lib/net45/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll",
+        "lib/net452/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll",
+        "lib/net462/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll",
+        "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll",
+        "microsoft.recognizers.text.datatypes.timexexpression.1.2.9.nupkg.sha512",
+        "microsoft.recognizers.text.datatypes.timexexpression.nuspec"
       ]
     },
     "Microsoft.Rest.ClientRuntime/2.3.21": {
@@ -12261,6 +12379,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "AdaptiveCards >= 2.4.0",
+      "AdaptiveCards.Templating >= 1.1.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.Bot.Builder.Integration.AspNet.Core >= 4.7.0",
       "Microsoft.IdentityModel.Tokens >= 6.8.0",
@@ -12312,6 +12431,10 @@
           "AdaptiveCards": {
             "target": "Package",
             "version": "[2.4.0, )"
+          },
+          "AdaptiveCards.Templating": {
+            "target": "Package",
+            "version": "[1.1.0, )"
           },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",

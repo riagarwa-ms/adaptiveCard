@@ -16,7 +16,7 @@
               "items": [
                 {
                   "type": "Image",
-                  "url": "https://i.ibb.co/JR6LyZ0/content-1.jpg",
+                  "url": "${imageUrl}",
                   "width": "256px",
                   "height": "150px"
                 }
@@ -32,7 +32,7 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "Leadership Connection",
+                      "text": "${siteName}",
                       "weight": "Bolder",
                       "fontType": "Default",
                       "size": "small",
@@ -40,7 +40,7 @@
                     },
                     {
                       "type": "TextBlock",
-                      "text": "Singapore Building Update. An Adaptive Card, containing a free-form body of card Fingerprinting check is required for special work environments. For the process to initiate, you would require your manager's approval",
+                      "text": "${pageTitle}",
                       "fontType": "Default",
                       "size": "Large",
                       "spacing": "small",
@@ -80,7 +80,7 @@
                             },
                             {
                               "type": "TextBlock",
-                              "text": "Patti Fernandez",
+                              "text": "${authorName}",
                               "fontType": "Default",
                               "isSubtle": true,
                               "size": "Small",
@@ -88,7 +88,7 @@
                             },
                             {
                               "type": "TextBlock",
-                              "text": "Aug 25, 2020",
+                              "text": "${authorDate}",
                               "fontType": "Default",
                               "isSubtle": true,
                               "size": "Small",

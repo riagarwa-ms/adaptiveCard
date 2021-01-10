@@ -25,6 +25,7 @@
       "HelloWorldBot/1.0.0": {
         "dependencies": {
           "AdaptiveCards": "2.4.0",
+          "AdaptiveCards.Templating": "1.1.0",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.Bot.Builder.Integration.AspNet.Core": "4.7.0",
           "Microsoft.IdentityModel.Tokens": "6.8.0",
@@ -52,6 +53,52 @@
         },
         "compile": {
           "lib/netstandard2.0/AdaptiveCards.dll": {}
+        }
+      },
+      "AdaptiveCards.Templating/1.1.0": {
+        "dependencies": {
+          "AdaptiveExpressions": "4.9.3",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AdaptiveCards.Templating.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.2009.1001"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AdaptiveCards.Templating.dll": {}
+        }
+      },
+      "AdaptiveExpressions/4.9.3": {
+        "dependencies": {
+          "Antlr4.Runtime": "4.6.6",
+          "Microsoft.CSharp": "4.7.0",
+          "Microsoft.Recognizers.Text.DataTypes.TimexExpression": "1.2.9",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AdaptiveExpressions.dll": {
+            "assemblyVersion": "4.9.3.0",
+            "fileVersion": "4.9.3.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AdaptiveExpressions.dll": {}
+        }
+      },
+      "Antlr4.Runtime/4.6.6": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Antlr4.Runtime.dll": {
+            "assemblyVersion": "4.6.0.0",
+            "fileVersion": "4.6.6.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.1/Antlr4.Runtime.dll": {}
         }
       },
       "Microsoft.Bot.Builder/4.7.0": {
@@ -258,6 +305,17 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.Recognizers.Text.DataTypes.TimexExpression/1.2.9": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll": {}
         }
       },
       "Microsoft.Rest.ClientRuntime/2.3.21": {
@@ -3360,6 +3418,27 @@
       "path": "adaptivecards/2.4.0",
       "hashPath": "adaptivecards.2.4.0.nupkg.sha512"
     },
+    "AdaptiveCards.Templating/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7aIFjQ1tVwLwVhgrVSCDLPf+ZMSZ84URKqIVtqy/5ZE7ucKMsqlFYWDbv0CgSixpePsYcz80dO5JLm50XJeXvA==",
+      "path": "adaptivecards.templating/1.1.0",
+      "hashPath": "adaptivecards.templating.1.1.0.nupkg.sha512"
+    },
+    "AdaptiveExpressions/4.9.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4Pz0is4Pn9YViYAr3wbQ98Kc/9K/7NAVSyjCiPOjllpkamZOXYG6IhH+eo/eCEZai79xdKHsxqp3li7CYMVBfg==",
+      "path": "adaptiveexpressions/4.9.3",
+      "hashPath": "adaptiveexpressions.4.9.3.nupkg.sha512"
+    },
+    "Antlr4.Runtime/4.6.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NlbRjkTCidRh1QeWvGfFPKq0sqpPZrAwGaSTV0X2jL8buZxTf9/aQ7PehFAmc7erXLUQ3YMZEVZU86aQwma2+w==",
+      "path": "antlr4.runtime/4.6.6",
+      "hashPath": "antlr4.runtime.4.6.6.nupkg.sha512"
+    },
     "Microsoft.Bot.Builder/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -3450,6 +3529,13 @@
       "sha512": "sha512-gTqzsGcmD13HgtNePPcuVHZ/NXWmyV+InJgalW/FhWpII1D7V1k0obIseGlWMeA4G+tZfeGMfXr0klnWbMR/mQ==",
       "path": "microsoft.identitymodel.tokens/6.8.0",
       "hashPath": "microsoft.identitymodel.tokens.6.8.0.nupkg.sha512"
+    },
+    "Microsoft.Recognizers.Text.DataTypes.TimexExpression/1.2.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ih1B1GF3YqtqCb161A7VtVfsKbIDnC3SZXYcMyGqY6WQNw0T8UwAZAnBUXw05U4LdI7NAwYSOxFcvvno3t1qmA==",
+      "path": "microsoft.recognizers.text.datatypes.timexexpression/1.2.9",
+      "hashPath": "microsoft.recognizers.text.datatypes.timexexpression.1.2.9.nupkg.sha512"
     },
     "Microsoft.Rest.ClientRuntime/2.3.21": {
       "type": "package",

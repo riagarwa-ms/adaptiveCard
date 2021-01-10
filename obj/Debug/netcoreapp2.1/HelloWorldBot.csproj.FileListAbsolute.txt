@@ -4,6 +4,7 @@ C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\DeploymentT
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\DeploymentTemplates\template-with-new-rg.json
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\DeploymentTemplates\template-with-preexisting-rg.json
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\Resources\Card.json
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\teamsAppManifest\manifest.json
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\appsettings.json
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\HelloWorldBot.deps.json
@@ -13,11 +14,10 @@ C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\HelloWorldB
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\HelloWorldBot.pdb
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\HelloWorldBot.RazorAssemblyInfo.cache
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\HelloWorldBot.RazorAssemblyInfo.cs
+C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\HelloWorldBot.AssemblyInfoInputs.cache
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\HelloWorldBot.AssemblyInfo.cs
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\HelloWorldBot.RazorTargetAssemblyInfo.cache
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\HelloWorldBot.dll
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\HelloWorldBot.pdb
 C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\HelloWorldBot.csprojAssemblyReference.cache
-C:\Work\azureBot\HelloWorldBot\HelloWorldBot\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
-C:\Work\azureBot\HelloWorldBot\HelloWorldBot\bin\Debug\netcoreapp2.1\Bots\adaptiveCardSample.json
