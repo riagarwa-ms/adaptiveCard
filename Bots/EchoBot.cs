@@ -171,41 +171,61 @@ namespace HelloWorldBot.Bots
 
         private async Task<JObject[]> GetSharePointMetadata(string accessToken, string actorToken, Uri spUrl)
         {
-            Task<JObject>[] taskList = new[]
+            var taskList = new[]
             {
-                EchoBot.MakePFTRequest(accessToken, actorToken, GetSiteContentRequestUrl(spUrl)),
-                EchoBot.MakePFTRequest(accessToken, actorToken, GetSiteTitleRequestUrl(spUrl)),
-                EchoBot.MakePFTRequest(accessToken, actorToken, GetThumbnailRequestUrl(spUrl))
+                EchoBot.GetSiteContent(accessToken, actorToken, spUrl),
+                EchoBot.GetSiteTitle(accessToken, actorToken, spUrl),
+                EchoBot.GetImageThumbnail(accessToken, actorToken, spUrl)
             };
 
             return await Task.WhenAll(taskList);
         }
 
-        private static string GetSiteTitleRequestUrl(Uri url)
+        private static async Task<JObject> GetSiteTitle(string accessToken, string actorToken, Uri url)
         {
             string teamSite = Regex.Split(url.ToString(), @"/\/ sitepages\//i")[0];
             string requestUrl = teamSite + "/_api/web/Title";
 
-            return requestUrl;
+            HttpResponseMessage responseMessage = await MakePFTRequest(accessToken, actorToken, requestUrl);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string responseStr = await responseMessage.Content.ReadAsStringAsync();
+                return JObject.Parse(responseStr);
+            }
+            return null;
         }
 
-        private static string GetSiteContentRequestUrl(Uri url)
+        private static async Task<JObject> GetSiteContent(string accessToken, string actorToken, Uri url)
         {
             string teamSite = Regex.Split(url.ToString(), @"/\/ sitepages\//i")[0];
             string requestUrl = teamSite + "/_api/sitepages/pages/GetByUrl('" + url.AbsolutePath + "')";
 
-            return requestUrl;
+            HttpResponseMessage responseMessage = await MakePFTRequest(accessToken, actorToken, requestUrl);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string responseStr = await responseMessage.Content.ReadAsStringAsync();
+                return JObject.Parse(responseStr);
+            }
+            return null;
         }
 
-        private static string GetThumbnailRequestUrl(Uri url)
+        private static async Task<JObject> GetImageThumbnail(string accessToken, string actorToken, Uri url)
         {
             string teamSite = Regex.Split(url.ToString(), @"/\/ sitepages\//i")[0];
             string requestUrl = url.Scheme + "://" + url.Host + "/_api/v2.0/sharePoint:/" + teamSite + ":/driveItem/thumbnails/0/c71x40/content";
 
-            return requestUrl;
+            HttpResponseMessage responseMessage = await MakePFTRequest(accessToken, actorToken, requestUrl);
+            if(responseMessage.IsSuccessStatusCode)
+            {
+                byte[] responseStr = await responseMessage.Content.ReadAsByteArrayAsync();
+                JObject obj = new JObject();
+                obj["imageUrlInBase64"] = "data:image/jpeg;base64," + Convert.ToBase64String(responseStr);
+                return obj;
+            }
+            return null;
         }
 
-        private static async Task<JObject> MakePFTRequest(string accessToken, string actorToken, string apiUrl)
+        private static async Task<HttpResponseMessage> MakePFTRequest(string accessToken, string actorToken, string apiUrl)
         {
             HttpClient client = new HttpClient();
             string authorizationHeaderValue = "MSAuth1.0 actortoken=" + '"' + 
@@ -214,13 +234,7 @@ namespace HelloWorldBot.Bots
             client.DefaultRequestHeaders.Add(authorizationKey, authorizationHeaderValue);
             client.DefaultRequestHeaders.Add(acceptKey, acceptJsonVal);
 
-            HttpResponseMessage responseMessage = await client.GetAsync(apiUrl);
-            if(responseMessage.IsSuccessStatusCode)
-            {
-                string responseStr = await responseMessage.Content.ReadAsStringAsync();
-                return JObject.Parse(responseStr);
-            }
-            return null;
+            return await client.GetAsync(apiUrl);
         }
 
         private static MessagingExtensionResponse CreateAdaptiveCard(JObject[] spMetadata)
@@ -233,11 +247,11 @@ namespace HelloWorldBot.Bots
 
                 var spData = new
                 {
-                    imageUrl = "https://i.ibb.co/JR6LyZ0/content-1.jpg",
+                    imageUrl = spMetadata[2]["imageUrlInBase64"].ToString(),
                     siteName = spMetadata[0]["Title"].ToString(),
                     pageTitle = spMetadata[1]["value"].ToString(),
-                    authorName = "Patti Fernandez",
-                    authorDate = "Aug 25, 2020"
+                    authorName = spMetadata[0]["Author"].ToString(),
+                    authorDate = spMetadata[0]["Date"].ToString()
                 };
 
                 string cardJson = template.Expand(spData);
